@@ -1,0 +1,44 @@
+path = "C:\\Users\\User\\Desktop\\Contacts.txt"
+List1 = []
+List2 = []
+f = open("C:\\Users\\User\\Desktop\\Contacts_1.txt", "a")
+file = open(path, "r")
+for i in file:
+    List1.append(i.split())
+
+
+for j in List1:
+    for a in j:
+        if "FN:" in a or "TEL;" in a:
+            List2.append(j)
+new_list = []
+for k in List2:
+        for z, k in enumerate(List2):
+            k = [word.replace('FN:', 'Name: ') for word in k]
+            k = [word.replace('TEL;type=CELL;type=VOICE;type=pref:', 'Number: ') for word in k]
+            k = [word.replace('TEL;type=pref:', 'Number: ') for word in k]
+            k = [word.replace('TEL;type=CELL;type=VOICE:', 'Number: ') for word in k]
+            k = [word.replace('TEL;type=HOME;type=VOICE;type=pref:', 'Number: ') for word in k]
+            k = [word.replace('TEL;type=IPHONE;type=CELL;type=VOICE:', 'Number: ') for word in k]
+            k = [word.replace('TEL;type=WORK;type=VOICE:', 'Number: ') for word in k]
+            k = [word.replace('TEL;type=OTHER;type=VOICE;type=pref:', 'Number: ') for word in k]
+            k = [word.replace('TEL;type=HOME;type=VOICE:', 'Number: ') for word in k]
+
+            List2[z] = k
+List3 = []
+for temp in List2:
+    for temp2 in temp:
+     if "Name: " in temp2:
+         List3.append([' '.join(temp)])
+     elif "Number: " in temp2:
+         List3.append([''.join(temp)])
+
+
+for o in List3:
+    for o2 in o:
+        f.write(o2 + "\n")
+
+
+
+file.close()
+file.close()
